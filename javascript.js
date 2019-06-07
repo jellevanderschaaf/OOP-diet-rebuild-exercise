@@ -26,4 +26,44 @@ newFoodItem('chicken legg', 39, 0, 54, 570, 1.22);
 newFoodItem('mackerel', 63, 0, 77, 875, 3.32);
 newFoodItem('apple', 0, 12, 0.4, 54, 0.12);
 
-console.log(foodItems['minced beef']);
+console.log(foodItems);
+
+//
+
+function createFoodItem() {
+    document.getElementById("createFoodItem").classList.remove('hidden');
+}
+
+function createItem() {
+
+    var entryName = document.getElementById('name').value;
+    var entryFat = document.getElementById('fat').value;
+    var entryCarbs = document.getElementById('carbs').value;
+    var entryProtein = document.getElementById('protein').value;
+    var entryKcals = document.getElementById('kcals').value;
+    var entryPrice = document.getElementById('price').value;
+
+
+    newFoodItem(entryName, entryFat, entryCarbs, entryProtein, entryKcals, entryPrice);
+    console.log(foodItems);
+
+
+    var newFoodItem2 = document.createElement('div');
+    newFoodItem2.innerHTML = "&bull; " + entryName;
+    newFoodItem2.setAttribute("class", "FoodItem");
+    document.getElementById("test").appendChild(newFoodItem2);
+    newFoodItem2.setAttribute("id", entryName);
+
+    var newFoodItemAddButton = document.createElement('button');
+    newFoodItemAddButton.innerHTML = '+';
+    newFoodItemAddButton.value = entryName;
+    newFoodItemAddButton.setAttribute("class", "btn btn-info add");
+    newFoodItemAddButton.onclick = "addFoodItemToList(this.value)";
+    document.getElementById(entryName).appendChild(newFoodItemAddButton);
+
+}
+
+function cancel() {
+    document.getElementById('foodForm').reset();
+    document.getElementById("createFoodItem").classList.add('hidden');
+}
